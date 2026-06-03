@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>גלי את הטיפוס שלך
+וקבלי מיד · לחיות בטבע שלך</title>
+<link href="https://fonts.googleapis.com/css2?family=Suez+One&family=Assistant:wght@200;300;400;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --terra:#C1521A;--terra-light:#D96A2A;
+  --teal:#4e8090;--teal-dark:#3a6070;
+  --cream:#f9f6f2;--white:#ffffff;
+  --ink:#1a1a1a;--ink-mid:#444;--ink-soft:#666;
+  --border:#e8e1d5;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Assistant',sans-serif;font-weight:300;background:var(--white);color:var(--ink);direction:rtl;min-height:100vh}
+
+/* NAV */
+nav{position:fixed;top:0;right:0;left:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0.9rem 3rem;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Suez One',serif;font-size:1.2rem;color:var(--terra);text-decoration:none}
+.nav-back{color:var(--ink-mid);text-decoration:none;font-size:0.9rem;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s}
+.nav-back:hover{color:var(--terra)}
+
+/* PAGE */
+.page{min-height:100vh;padding:120px 1.5rem 60px;background:var(--cream)}
+.page-inner{max-width:640px;margin:0 auto}
+.page-label{font-size:0.72rem;letter-spacing:0.25em;color:var(--terra);border-bottom:1px solid var(--terra);padding-bottom:2px;display:inline-block;margin-bottom:1rem}
+.page-title{font-family:'Suez One',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:var(--ink);line-height:1.2;margin-bottom:0.8rem;font-weight:400}
+.page-sub{font-size:1rem;color:var(--ink-mid);line-height:1.8;margin-bottom:2.5rem}
+
+/* FORM CARD */
+.form-card{background:var(--white);border:1px solid var(--border);border-radius:4px;padding:2.5rem 2rem}
+.form-group{margin-bottom:1.2rem}
+.form-group label{display:block;font-size:0.85rem;color:var(--ink-soft);margin-bottom:6px}
+.form-group input{
+  width:100%;padding:10px 14px;
+  border:1px solid #d0cdc8;border-radius:2px;
+  font-size:14px;font-family:'Assistant',sans-serif;
+  color:var(--ink);background:var(--white);
+  box-sizing:border-box;direction:rtl;outline:none;
+  transition:border-color 0.2s;
+}
+.form-group input:focus{border-color:var(--teal)}
+.form-group input[type="date"],.form-group input[type="time"]{direction:ltr;text-align:right}
+.form-note{font-size:0.78rem;color:#aaa;margin-top:4px}
+.gender-row{display:flex;gap:24px;padding-top:4px}
+.gender-row label{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink);cursor:pointer;font-weight:300}
+.gender-row input[type="radio"]{width:auto;accent-color:var(--teal)}
+
+.submit-btn{
+  width:100%;padding:13px;
+  background:var(--terra);color:var(--white);
+  border:none;font-family:'Assistant',sans-serif;
+  font-size:1rem;font-weight:600;cursor:pointer;
+  margin-top:0.5rem;transition:background 0.3s;border-radius:2px;
+}
+.submit-btn:hover{background:var(--terra-light)}
+.submit-btn:disabled{background:#aaa;cursor:not-allowed}
+
+.form-error{
+  display:none;margin-top:12px;padding:10px 14px;
+  background:#fff0ee;border-right:3px solid var(--terra);
+  font-size:13px;color:#a03d10;border-radius:2px;
+}
+
+/* RESULT */
+.form-result{
+  display:none;margin-top:1.5rem;padding:1.5rem;
+  background:var(--cream);border:1px solid var(--border);border-radius:4px;
+}
+.form-result h4{
+  font-family:'Suez One',serif;font-size:1.2rem;font-weight:400;
+  margin:0 0 1rem 0;text-align:center;color:var(--teal);
+}
+.result-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)}
+.result-row:last-child{border-bottom:none}
+.result-label{font-size:13px;color:var(--ink-soft)}
+.result-value{font-size:15px;font-weight:600;color:var(--ink);text-align:left}
+.result-cta{
+  display:block;width:100%;padding:14px;margin-top:1.2rem;
+  background:var(--teal);color:var(--white);
+  text-align:center;text-decoration:none;
+  font-family:'Suez One',serif;font-size:1.1rem;
+  border-radius:2px;transition:background 0.2s;
+}
+.result-cta:hover{background:var(--teal-dark)}
+
+/* TYPE GRID */
+.types-section{margin-top:3rem}
+.types-title{font-family:'Suez One',serif;font-size:1.3rem;color:var(--ink);font-weight:400;margin-bottom:1.2rem;text-align:center}
+.types-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.type-card{text-decoration:none;color:inherit;background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s}
+.type-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.08)}
+.type-card img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.type-card h3{font-family:'Suez One',serif;font-size:1rem;font-weight:400;padding:0.7rem 1rem;text-align:center}
+.m-gold{color:#c5a62d}.g-red{color:var(--terra)}.p-green{color:#4a915a}.r-blue{color:var(--teal)}
+
+/* FOOTER */
+footer{background:var(--ink);text-align:center;padding:1.5rem;color:rgba(255,255,255,0.3);font-size:0.8rem}
+footer span{color:var(--terra)}
+
+@media(max-width:600px){
+  nav{padding:0.9rem 1.2rem}
+  .form-card{padding:1.5rem 1.2rem}
+  .types-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">לחיות בטבע שלך</a>
+  <a class="nav-back" href="index.html">← חזרה לאתר</a>
+</nav>
+
+<div class="page">
+  <div class="page-inner">
+    <span class="page-label">✦ קריאת מפה</span>
+    <h1 class="page-title">גלי את הטיפוס שלך<br>וקבלי מיד</h1>
+    <p class="page-sub">הכניסי את פרטי הלידה שלך וקבלי את הפרופיל האנושי שלך הטיפוס, הפרופיל, הסמכות וההגדרה.</p>
+
+    <div class="form-card" id="hd-form">
+
+      <div class="form-group">
+        <label>שם מלא</label>
+        <input type="text" id="hd-name" placeholder="שם פרטי ומשפחה" />
+      </div>
+      <div class="form-group">
+        <label>אימייל</label>
+        <input type="email" id="hd-email" placeholder="your@email.com" style="direction:ltr;text-align:right" />
+      </div>
+      <div class="form-group">
+        <label>תאריך לידה</label>
+        <input type="date" id="hd-birthdate" />
+      </div>
+      <div class="form-group">
+        <label>שעת לידה</label>
+        <input type="time" id="hd-birthtime" />
+        <div class="form-note">אם אינך יודעת את השעה המדויקת, הכניסי 12:00</div>
+      </div>
+      <div class="form-group">
+        <label>מקום לידה</label>
+        <input type="text" id="hd-location" placeholder="עיר, מדינה לדוגמה: תל אביב, ישראל" />
+      </div>
+      <div class="form-group">
+        <label>מגדר</label>
+        <div class="gender-row">
+          <label><input type="radio" name="hd-gender" value="f" /> נקבה</label>
+          <label><input type="radio" name="hd-gender" value="m" /> זכר</label>
+        </div>
+      </div>
+
+      <button class="submit-btn" id="hd-submit" onclick="submitHD()">גלי את הטיפוס שלך
+וקבלי מיד ←</button>
+      <div class="form-error" id="hd-error"></div>
+
+      <div class="form-result" id="hd-result">
+        <h4>הטיפוס שלך ✦</h4>
+        <div id="hd-result-content"></div>
+        <a href="guide.html" class="result-cta">
+          קבלי את המדריך המלא שלך ב־87 ₪ ←
+        </a>
+      </div>
+    </div>
+
+    </div>
+  </div>
+</div>
+
+<footer><p>© 2026 <span>לחיות בטבע שלך</span> · נטע גולן ♡</p></footer>
+
+<script>
+var HD_API_KEY  = 'd3f20487-79ef-493d-b616-edc34e423592';
+var HD_API_URL  = 'https://api.humandesignapi.nl/v2/charts/coordinates';
+var SCRIPT_URL  = 'https://script.google.com/macros/s/AKfycbzzkJG_9cGLl5u2q6E02Qu9ingJtZdHlxYfa2k38YBuBcDxLTYGHcdgUcabTHV6dkGX/exec';
+
+var TYPES={'Generator':"ג'נרייטור",'Manifesting Generator':"מניפסטינג ג'נרייטור",'Projector':"פרוג'קטור",'Manifestor':'מניפסטור','Reflector':'רפלקטור'};
+var PROFILES={'1/3':'1/3 החוקר / הקדוש המעונה','1/4':'1/4 החוקר / האופורטיוניסטי','2/4':'2/4 הנזיר / האופורטיוניסטי','2/5':'2/5 הנזיר / הכופר המושיע','3/5':'3/5 הקדוש המעונה / הכופר המושיע','3/6':'3/6 הקדוש המעונה / דמות לדוגמה','4/6':'4/6 האופורטיוניסטי / דמות לדוגמה','4/1':'4/1 האופורטיוניסטי / החוקר','5/1':'5/1 הכופר המושיע / החוקר','5/2':'5/2 הכופר המושיע / הנזיר','6/2':'6/2 דמות לדוגמה / הנזיר','6/3':'6/3 דמות לדוגמה / הקדוש המעונה'};
+var AUTHORITIES={'Sacral':'סקרל','Emotional':'רגשית','Splenic':'טחולית','Ego':'אגו','Self-Projected':'עצמית','Mental':'מנטלית','Lunar':'ירחית','None':'ללא'};
+var DEFINITIONS={'Single Definition':'הגדרה בודדת','Split Definition':'הגדרה מפוצלת','Triple Split Definition':'הגדרה מפוצלת משולשת','Quadruple Split Definition':'הגדרה מפוצלת מרובעת','No Definition':'ללא הגדרה'};
+
+function translate(map,val){return map[val]||val}
+function showErr(msg){var el=document.getElementById('hd-error');el.textContent=msg;el.style.display='block'}
+function resultRow(label,value){return '<div class="result-row"><span class="result-label">'+label+'</span><span class="result-value">'+value+'</span></div>'}
+
+function geocode(location){
+  return fetch('https://nominatim.openstreetmap.org/search?format=json&q='+encodeURIComponent(location)+'&limit=1',{headers:{'Accept-Language':'en','User-Agent':'neta-golan-hd-form'}})
+  .then(function(r){return r.json()})
+  .then(function(results){if(!results||results.length===0)throw new Error('לא נמצא מיקום: '+location);return{lat:parseFloat(results[0].lat),lng:parseFloat(results[0].lon)}});
+}
+function fetchHdChart(birthdate,birthtime,lat,lng){
+  return fetch(HD_API_URL,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+HD_API_KEY},body:JSON.stringify({birthdate:birthdate,birthtime:birthtime,lat:lat,lng:lng})})
+  .then(function(r){return r.json()})
+  .then(function(data){if(!data.success)throw new Error(data.message||'שגיאת API');return data.data});
+}
+function sendToPdfScript(name,email,gender,birthdate,birthtime,lat,lng){
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,email:email,gender:gender,birthdate:birthdate,birthtime:birthtime,lat:lat,lng:lng})}).catch(function(){});
+}
+function submitHD(){
+  var name=document.getElementById('hd-name').value.trim();
+  var email=document.getElementById('hd-email').value.trim();
+  var birthdate=document.getElementById('hd-birthdate').value;
+  var birthtime=document.getElementById('hd-birthtime').value;
+  var location=document.getElementById('hd-location').value.trim();
+  var btn=document.getElementById('hd-submit');
+  var result=document.getElementById('hd-result');
+  document.getElementById('hd-error').style.display='none';
+  result.style.display='none';
+  if(!name){showErr('נא להכניס שם מלא');return}
+  if(!email||!email.includes('@')){showErr('נא להכניס אימייל תקין');return}
+  if(!birthdate){showErr('נא לבחור תאריך לידה');return}
+  if(!birthtime){showErr('נא להכניס שעת לידה');return}
+  if(!location){showErr('נא להכניס מקום לידה');return}
+  var gender=document.querySelector('input[name="hd-gender"]:checked');
+  if(!gender){showErr('נא לבחור מגדר');return}
+  btn.textContent='מאתרת מיקום...';btn.disabled=true;
+  var coords;
+  geocode(location)
+  .then(function(c){coords=c;btn.textContent='מחשבת מפה...';return fetchHdChart(birthdate,birthtime||'12:00',coords.lat,coords.lng)})
+  .then(function(chartData){
+    btn.textContent='גלי את הטיפוס שלך
+וקבלי מיד ←';btn.disabled=false;
+    var html='';
+    if(chartData.type)html+=resultRow('טיפוס',translate(TYPES,chartData.type));
+    if(chartData.profile)html+=resultRow('פרופיל',translate(PROFILES,chartData.profile));
+    if(chartData.authority)html+=resultRow('סמכות',translate(AUTHORITIES,chartData.authority));
+    if(chartData.definition)html+=resultRow('הגדרה',translate(DEFINITIONS,chartData.definition));
+    document.getElementById('hd-result-content').innerHTML=html;
+    result.style.display='block';
+    sendToPdfScript(name,email,gender.value,birthdate,birthtime||'12:00',coords.lat,coords.lng);
+  })
+  .catch(function(e){btn.textContent='גלי את הטיפוס שלך
+וקבלי מיד ←';btn.disabled=false;showErr(e.message||'שגיאת חיבור. נסי שוב.')});
+}
+</script>
+</body>
+</html>
